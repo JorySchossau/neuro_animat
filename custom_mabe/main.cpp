@@ -55,7 +55,7 @@ constructAllGroupsFrom(const std::shared_ptr<AbstractWorld> &world,
 
 using namespace arma;
 // make the pythonic 'print()' fn work, for happiness.
-print::PrettyPrinter printer;
+pprint::PrettyPrinter printer;
 #define print printer.print
 int main(int argc, const char *argv[]) {
   frowvec arow(3);
