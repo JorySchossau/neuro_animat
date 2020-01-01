@@ -1,0 +1,6 @@
+[submodule "mabe"]
+	path = mabe
+	url = https://github.com/hintzelab/mabe.git
+[submodule "pprint"]
+	path = pprint
+	url = https://github.com/p-ranav/pprint
