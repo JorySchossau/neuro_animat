@@ -1,0 +1,17 @@
+# LAPACK / MKL
+find_package(LAPACK REQUIRED)
+include_directories(${LAPACK_INCLUDE_DIRS})
+target_link_libraries(${EXE} ${LAPACK_LIBRARIES})
+
+# ARMADILLO
+include_directories(../armadillo/include)
+if (CMAKE_BUILD_TYPE STREQUAL "Release")
+  set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -DNO_BOUNDS_CHECKING")
+  set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -march=native")
+  message(STATUS "building in Release mode")
+else()
+  message(STATUS "building in Debug mode")
+endif()
+
+# PPRINT
+include_directories(../pprint/include)
