@@ -1,6 +1,7 @@
 [submodule "pprint"]
 	path = pprint
-	url = https://github.com/p-ranav/pprint
+	url = https://github.com/joryschossau/pprint
+	branch = hotfix-multi-translation-unit-includes
 [submodule "armadillo"]
 	path = armadillo
 	url = https://gitlab.com/conradsnicta/armadillo-code
