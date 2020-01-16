@@ -5,6 +5,7 @@
   - Logic16
   - BlockCatch
   - TPM
+  + Motors2
 
 % Genome
   - Multi
@@ -19,6 +20,7 @@
   - Wire
   - ANN
   - BiLog
+  + Motors2
 
 % Optimizer
   * Simple

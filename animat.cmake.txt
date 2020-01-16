@@ -15,3 +15,8 @@ endif()
 
 # PPRINT
 include_directories(../pprint/include)
+
+# UTILITIES
+include_directories(../custom_mabe)
+target_sources(${EXE} PRIVATE ../custom_mabe/animat_utilities)
+target_sources(${EXE} PRIVATE ../custom_mabe/animat_utilities.cpp)
