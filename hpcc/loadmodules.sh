@@ -1,1 +1,1 @@
-module load GNU/8.2.0-2.31.1 OpenMPI/3.1.3 Armadillo Python/3.7.2
+module load cmake GNU/8.3.0 Python3/3.7.4 OpenBLAS 
