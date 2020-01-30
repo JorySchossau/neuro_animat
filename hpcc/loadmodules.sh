@@ -1,1 +1,1 @@
-module load cmake GNU/8.3.0 Python3/3.7.4 OpenBLAS 
+module load cmake GCC/8.3.0 Python/3.7.4 OpenBLAS 
