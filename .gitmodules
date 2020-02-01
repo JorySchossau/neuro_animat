@@ -7,5 +7,5 @@
 	url = https://gitlab.com/conradsnicta/armadillo-code
 [submodule "mabe"]
 	path = mabe
-	url = https://gitlab.msu.edu/neuro_animat/mabe
+	url = https://gitlab.msu.edu/neuro_animat/mabe.git
 	branch = animat_2motors
