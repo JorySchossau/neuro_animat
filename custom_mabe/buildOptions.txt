@@ -1,7 +1,7 @@
 % World
   - Berry
   - Xor
-  * Test
+  - Test
   - Logic16
   - BlockCatch
   - TPM
@@ -13,7 +13,7 @@
 
 % Brain
   - Markov
-  * CGP
+  - CGP
   - LSTM
   - ConstantValues
   - Human
