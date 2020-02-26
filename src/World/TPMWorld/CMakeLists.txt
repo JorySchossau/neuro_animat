@@ -1,0 +1,5 @@
+option(enable_World_TPM "Enable Module TPMWorld" OFF)
+if (enable_World_TPM)
+  register_module(World TPM)
+  target_sources(${EXE} PRIVATE ${CMAKE_CURRENT_LIST_DIR}/TPMWorld.cpp)
+endif()
