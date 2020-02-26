@@ -287,18 +287,18 @@ void SimpleOptimizer::optimize(std::vector<std::shared_ptr<Organism>> &populatio
 		currentCopy = 0;
 		while ((nextPopulationSize < nextPopulationTargetSize) && (currentCopy < elitismCount)) {
 			// old code - created mutated offspring
-			//push_back(populationAfterCull[elites[currentElite]]->makeMutatedOffspringFrom(populationAfterCull[elites[currentElite]]));
+			population.push_back(populationAfterCull[elites[currentElite]]->makeMutatedOffspringFrom(populationAfterCull[elites[currentElite]]));
 			// new version - offspring is unmutated copy
-			auto eliteParent = populationAfterCull[elites[currentElite]];
-			std::unordered_map<std::string, std::shared_ptr<AbstractGenome>> newGenomes;
-			std::unordered_map<std::string, std::shared_ptr<AbstractBrain>> newBrains;
-			for (auto genome : eliteParent->genomes) {
-				newGenomes[genome.first] = genome.second->makeCopy(genome.second->PT);
-			}
-			for (auto brain : eliteParent->brains) {
-				newBrains[brain.first] = brain.second->makeCopy(brain.second->PT);
-			}
-			population.push_back(std::make_shared<Organism>(eliteParent, newGenomes, newBrains, eliteParent->PT));
+			//auto eliteParent = populationAfterCull[elites[currentElite]];
+			//std::unordered_map<std::string, std::shared_ptr<AbstractGenome>> newGenomes;
+			//std::unordered_map<std::string, std::shared_ptr<AbstractBrain>> newBrains;
+			//for (auto genome : eliteParent->genomes) {
+			//	newGenomes[genome.first] = genome.second->makeCopy(genome.second->PT);
+			//}
+			//for (auto brain : eliteParent->brains) {
+			//	newBrains[brain.first] = brain.second->makeCopy(brain.second->PT);
+			//}
+			//population.push_back(std::make_shared<Organism>(eliteParent, newGenomes, newBrains, eliteParent->PT));
 			//std::cout << "added elite org: " << population.back()->ID << " from parent: " << eliteParent->ID << std::endl;
 			nextPopulationSize++;
 			eliteCount++;
