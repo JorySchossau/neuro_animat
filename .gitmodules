@@ -1,4 +1,0 @@
-[submodule "mabe"]
-	path = mabe
-	url = https://gitlab.msu.edu/neuro_animat/mabe.git
-	branch = animat_2motors
