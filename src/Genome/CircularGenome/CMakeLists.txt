@@ -1,4 +1,4 @@
-option(enable_Genome_Circular "Enable Module CircularGenome" ON)
+option(enable_Genome_Circular "Enable Module CircularGenome" On)
 if (enable_Genome_Circular)
   register_module(Genome Circular)
   target_sources(${EXE} PRIVATE ${CMAKE_CURRENT_LIST_DIR}/CircularGenome.cpp)

@@ -1,4 +1,4 @@
-option(enable_Brain_CGP "Enable Module CGPBrain" ON)
+option(enable_Brain_CGP "Enable Module CGPBrain" On)
 if (enable_Brain_CGP)
   register_module(Brain CGP)
   target_sources(${EXE} PRIVATE ${CMAKE_CURRENT_LIST_DIR}/CGPBrain.cpp)
