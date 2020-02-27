@@ -9,7 +9,30 @@ sh setup.cmd (on windows just: setup)
 ./mbuild (on windows: mbuild.exe)
 cd work
 ./mabe (now you're running mabe)
+./mabe -s (saves config files)
+./mabe -f *.cfg (now using config files)
 ```
+
+* **Suggested Configuration Values**
+* `settings_world.cfg`
+    * `WORLD_MOTORS2`
+        * evluationsPerGeneration = 5
+        * numThreads = < something small but non-zero if you don't want to hog an entire node on the HPCC, or your laptop >
+* `settings.cfg`
+    * `GLOBAL`
+        * updates = < bigger number than 100 for anything meaningful >
+    * `ARCHIVIST_DEFAULT`
+        * realtimeSequence < your choice>
+        * snapshotDataSequence < your choice>
+        * snapshotOrganismsSequence < your choice>
+        * writeSnapshotDataFiles = 1
+        * writeSnapshotOrganismsFiles = 1
+    * `ARCHIVIST_LODWAP`
+        * dataSequence = < your choice>
+        * organismsSequence = < your choice>
+        * terminateAfter = 0
+        * elitismCount = 10 # this is how many offspring each elite member produces
+        * elitismRange = 10 # this is how many elites to select
 
 #### Frequently Asked Questions
 
@@ -230,6 +253,13 @@ Alternatively, you may want to save very specific data and lots of it, perhaps f
 The FileManager makes sure to blank the file at the start of MABE, and keep appending to that file every time you write to it.
 
 #### Running on the HPCC
+
+Before you can do anything on the HPCC, 2 of the biggest roadblocks will be simply compiling MABE. Toward that end, here's how on the HPCC:
+
+* you can ONLY do useful things on a dev node. Don't try to do anything on the initial gateway note, except ssh to a dev note. Typical workflow should look like: `ssh hpcc.msu.edu` then `ssh dev-intel18` or some other dev node.
+* load the right git so you can even clone the repo: `module load git`
+* load the right compilers and other tools once you have the repo: see the file `hpcc/loadmodules.sh` for which HPCC modules to load. You can run it by `source hpcc/loadmodules.sh`
+
 There is a lot to know to run things on the HPCC! The `mq` tool helps with this. `mq` manages job submission of replicates and condition combinations, as well as allowing you to make use of the DMTCP system for Distributed MultiThreaded CheckPointing, which allows us to run jobs that will:
 
 1) have high priority in the queue by claiming to run less than 4 hours
@@ -240,6 +270,8 @@ The complexity of `mq` is in the condition, replication, and other settings conf
 There are many HPCC-specific [job specifications](https://wiki.hpcc.msu.edu/display/ITH/List+of+Job+Specifications) and adjustments you may need to make (see the bottom of `mq_conditions.txt`), and the ICER's HPCC wiki and support open office hours are great ways to get help with this topic. See the HPCC's [Cluster Resources](https://wiki.hpcc.msu.edu/pages/viewpage.action?pageId=20120131) page to see what kinds of nodes are available. Intel18 has 20 cores (40 fake/hyperthreaded).
 
 #### Visualizing Behavior (or anything else)
+
+Motors2World currently responds to the `GLOBAL-mode` setting if set to `visulualize` it will run the first organism it comes across, and save all lifetime behavior data to a file then quit.
 
 I wrote a generic visualization tool, kind of like Processing, with example code used for animat visualization (2D-foraging) [called vis](https://github.com/joryschossau/vis). While you can use it purely on the command line and with any text editor, it's most enjoyable to use with the full IDE experience with code error detection and autocompletion. To do that you should download the **Godot** game engine (no installation required), import a project, and use the `src/` directory from the `vis` repository as a project directory. After that, since you are not using the command line, you'll need to set the default command line arguments that `vis` expects, under `settings` menu, `project settings`, `General` tab, `Editor` category, and set `Main Run Args` to `--2d --script=readcsv.gd --file=animat_behavior.csv`.
 
