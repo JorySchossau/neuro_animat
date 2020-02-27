@@ -362,7 +362,7 @@ Okay, so not really a new thing, but good to remember since I use it sometimes.
 bool not_python = true;
 print("This is ",not_python);
 ```
-The animat code uses and includes the pprint library, which improves quality of life when needing to print things to the screen. The alternative looks like this.
+The animat code uses and includes the pprint library, which improves quality of life when needing to print things to the screen. The alternative using standard c++ looks like this.
 ```c++
 std::cout << "This is ", << not_python << std::endl;
 ```
