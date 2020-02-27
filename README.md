@@ -12,8 +12,10 @@ cd work
 ```
 
 #### Frequently Asked Questions
+
 **When do I have to recompile with mbuild?**
 If you've changed source code *or* changed which modules are included/excluded in `modules.txt`
+
 **When do I have to generate settings files (mabe -s) after building?**
 Only if you've added or removed settings defined in the `.h` and `.cpp` files. However, if you are only adding settings, you can have MABE keep your old settings and merge with the new ones it knows about: `mabe -f *.cfg -s` means, load the config files and the values I've set, now save out the settings again.
 
@@ -162,17 +164,19 @@ MABE is an evolution framework, so by default it allows for selection, mutation,
 
 ##### File Layout
 MABE source code directory structure is representative of the module categories. The important ones are:
-* Archivists
-* Brains
-* Genomes
-* Optimizers
-* Worlds
+- Archivists
+- Brains
+- Genomes
+- Optimizers
+- Worlds
 
-**Archivists** control how data is collected and saved. Different archivist provide different data views over evolutionary time, such as Line of Descent, or population Snapshots useful to studying speciation.
-**Brains** provide different ways to perform computations: input to output, such as the different between various neural network models.
-**Genomes** provide the underlying genetic structure, such as haploid, diploid, or triploid, and how mutations and other genetic events occur on those structures.
-**Optimizers** offer different ways to perform selection, such as elite selection, roulette selection, or lek selection.
-**Worlds** are the environments in which agents are evaluated and scored. The scores are what selection acts on.
+
+
+* **Archivists** control how data is collected and saved. Different archivist provide different data views over evolutionary time, such as Line of Descent, or population Snapshots useful to studying speciation.
+* **Brains** provide different ways to perform computations: input to output, such as the different between various neural network models.
+* **Genomes** provide the underlying genetic structure, such as haploid, diploid, or triploid, and how mutations and other genetic events occur on those structures.
+* **Optimizers** offer different ways to perform selection, such as elite selection, roulette selection, or lek selection.
+* **Worlds** are the environments in which agents are evaluated and scored. The scores are what selection acts on.
 
 #### Brain Module
 As a biological analogy, every Brain module is essentially the part of the nervous system that has little or no concept of overall morphology (body design). With this understanding, the Brian is only responsible for doing 3 things: allowing its inputs to be set, performing a computational update on command, and setting outputs as a result of the update. Crucially, a MABE Brain is usually designed to be parameterized for any number of inputs and outputs. This is so when an experimenter decides to use a Brain X with some other World Y, that the World notifies the Brain at time of construction how many inputs and outputs it will need to process information for that World. The first animat brain (called `Motors2Brain`) will only ever use a specific amount of inputs and outputs, and for this reason it is limited to the accompanying animat world (called `Motors2World`).
@@ -208,11 +212,11 @@ DataMap is the way MABE records data and passes it around. Each organism in the 
 See the excellent [MABE wiki entry for working with settings files](https://github.com/Hintzelab/MABE/wiki/Installation-and-getting-started-with-MABE#generating-settings-files).
 
 #### Saving; Adding Parameters
-**Output Data .csv Files**
+* **Output Data .csv Files**
 MABE generates a number of output `.csv` data files. To understand more about these, see the [MABE wiki entry](https://github.com/Hintzelab/MABE/wiki/Output-Files).
-**Adding Parameters**
+* **Adding Parameters**
 You can add your own parameters to your modules, so that the values can be set via the text config files or command line parameters at runtime, and you don't need to recompile. See the [MABE wiki entry](https://github.com/Hintzelab/MABE/wiki/Adding-Parameters) for more information.
-**Saving Data (DataMap)**
+* **Saving Data (DataMap)**
 `popFileColumns` is a vectors of strings that genomes, brains, and worlds each define for themselves. These vectors are used by the default archivist to determine what data from an organism's [DataMap](<https://github.com/Hintzelab/MABE/wiki/DataMap>) to include in average files (ex: pop.csv). To record your own novel data, such as `food_eaten`, you must first register it in the module's constructor by adding it to the `popFileColumns` vector:
 ```
 popFileColumns.push_back("food_eaten");
@@ -221,7 +225,7 @@ Then, later during perhaps the end of an evaluation, you can set or append value
 ```
 org->dataMap.append("food_eaten", food_eaten_counter);
 ```
-**Saving Data (Manual)**
+* **Saving Data (Manual)**
 Alternatively, you may want to save very specific data and lots of it, perhaps for visualizing state later. You can use `FileManager.writeToFile(filename, datastring)`
 The FileManager makes sure to blank the file at the start of MABE, and keep appending to that file every time you write to it.
 
