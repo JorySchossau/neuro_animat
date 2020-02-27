@@ -53,7 +53,7 @@ The Reimers Lab digital animat project is a digital study organism to investigat
 3) **Animat Architecture**
     * We detail the various parts of the animat code itself, so you know roughly where things are to add or modify.
 4) **c++17 and Beyond**
-    * We go over some of the newer c++ syntax user in the animat code, and point out the special libraries the animat code uses.
+    * We go over some of the newer c++ syntax used in the animat code, and point out the special libraries the animat code uses.
 
 ### 1) Software: Install, Build, and Run
 
