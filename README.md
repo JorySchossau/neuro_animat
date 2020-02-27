@@ -5,7 +5,7 @@ If you kind of know what you're doing, here's a reminder of what's involved:
 ```bash
 git clone https://gitlab.msu.edu/neuro_animat/animatcpp
 cd animatcpp
-sh setup.cmd (on windows just: setup)
+./setup.cmd (on windows just: setup)
 ./mbuild (on windows: mbuild.exe)
 cd work
 ./mabe (now you're running mabe)
@@ -95,13 +95,13 @@ git clone git@gitlab.msu.edu:neuro_animat/animatcpp
 ##### Run First Time Setup
 *This step is optional, but it sets up the* `mbuild` *executable for you, which is an easier and highly suggested way to interface with MABE. The next sections will assume you are using this tool, or if not, that you are savvy with c++ build tools enough to figure it out.*
 * **Windows**: On a terminal, run the **setup.bat** file in the repository. For example, `animatcpp\setup.cmd`
-* **Mac or Linux or MSYS2**: On a terminal, run the **setup** file in the repository. For example, `sh animatcpp/setup.cmd`
+* **Mac or Linux or MSYS2**: On a terminal, run the **setup** file in the repository. For example, `animatcpp/setup.cmd`
 *Note: You can run the setup file from anywhere and it will copy the src/Utilities/{OS}_build binary to the repo root and rename it to* `mbuild`
 
 **Mac, Linux, MSYS2**
 ```bash
 cd animatcpp
-sh setup.cmd
+./setup.cmd
 ```
 **Windows**
 ```bash
