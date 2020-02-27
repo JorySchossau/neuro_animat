@@ -1,0 +1,33 @@
+% World
+  - Logic16
+  * Motors2
+  - BlockCatch
+  - Xor
+  - TPM
+  - Test
+  - Berry
+
+% Genome
+  * Circular
+  - Multi
+
+% Archivist
+  - SSwD
+  * LODwAP
+
+% Brain
+  - Wire
+  - CGP
+  - Markov
+  * Motors2
+  - LSTM
+  - BiLog
+  - ANN
+  - Human
+  - ConstantValues
+
+% Optimizer
+  - Islands
+  - Lexicase
+  * Simple
+
