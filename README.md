@@ -1,4 +1,4 @@
-**2020/02/26** Known issues: 1) Won't compile MarkovBrain or ANNBrain on Visual Studio until the code is updated (should be soon) 2) None of MABE_extras have been updated to work with the latest build system because it has yet to be released on the MABE public branch, but is included her in this version of the animat-MABE codebase. I expect this to be released within a week or two.
+**2020/02/26** Known issues: 1) Won't compile MarkovBrain or ANNBrain on Visual Studio until the code is updated (should be soon) 2) None of MABE_extras have been updated to work with the latest build system because it has yet to be released on the MABE public branch, but is included here in this version of the animat-MABE codebase. I expect this to be released within a week or two.
 
 #### Quickstart
 If you kind of know what you're doing, here's a reminder of what's involved:
