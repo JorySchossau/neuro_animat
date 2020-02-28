@@ -5,7 +5,7 @@ If you kind of know what you're doing, here's a reminder of what's involved:
 ```bash
 git clone https://gitlab.msu.edu/neuro_animat/animatcpp
 cd animatcpp
-sh setup.cmd (on windows just: setup)
+./setup.cmd (on windows just: setup)
 ./mbuild (on windows: mbuild.exe)
 cd work
 ./mabe (now you're running mabe)
@@ -53,7 +53,7 @@ The Reimers Lab digital animat project is a digital study organism to investigat
 3) **Animat Architecture**
     * We detail the various parts of the animat code itself, so you know roughly where things are to add or modify.
 4) **c++17 and Beyond**
-    * We go over some of the newer c++ syntax user in the animat code, and point out the special libraries the animat code uses.
+    * We go over some of the newer c++ syntax used in the animat code, and point out the special libraries the animat code uses.
 
 ### 1) Software: Install, Build, and Run
 
@@ -81,7 +81,7 @@ The steps to get MABE running are as follows:
     * **git** if you want to keep up to date with latest changes in the repository, or track your own changes, or share your changes.
 * **Mac OSX**:
     * You can use **xcode** to edit your code, but any text editor will do.
-* **Python 3.6+** This is useful if you want to use the `mq` job control tool (local computer or HPCC modes) or the `mgraph` visualization tool.  Both tools are located in the `pytools/` folder. For more information about these, see the MABE wiki [entry on mq](https://github.com/Hintzelab/MABE/wiki/MQ), or the [entry on mgraph](https://github.com/Hintzelab/MABE/wiki/MGraph). mbuild documentation is out of date as mbuild is no longer a python tool.
+* **Python 3.6+** This is useful if you want to use the `mq` job control tool (local computer or HPCC modes) or the `mgraph` visualization tool.  Both tools are located in the `pytools/` folder. For more information about these, see the MABE wiki [entry on mq](https://github.com/Hintzelab/MABE/wiki/MQ), or the [entry on mgraph](https://github.com/Hintzelab/MABE/wiki/MGraph). mbuild documentation on the MABE wiki is out of date as mbuild is no longer a python tool, so refer only to this documentation for mbuild.
 
 ##### Get the code
 * The animat code is hosted on MSU's GitLab service [MSU GitLab NeurAnimat](https://gitlab.msu.edu/neuro_animat/animatcpp)
@@ -95,13 +95,13 @@ git clone git@gitlab.msu.edu:neuro_animat/animatcpp
 ##### Run First Time Setup
 *This step is optional, but it sets up the* `mbuild` *executable for you, which is an easier and highly suggested way to interface with MABE. The next sections will assume you are using this tool, or if not, that you are savvy with c++ build tools enough to figure it out.*
 * **Windows**: On a terminal, run the **setup.bat** file in the repository. For example, `animatcpp\setup.cmd`
-* **Mac or Linux or MSYS2**: On a terminal, run the **setup** file in the repository. For example, `sh animatcpp/setup.cmd`
+* **Mac or Linux or MSYS2**: On a terminal, run the **setup** file in the repository. For example, `animatcpp/setup.cmd`
 *Note: You can run the setup file from anywhere and it will copy the src/Utilities/{OS}_build binary to the repo root and rename it to* `mbuild`
 
 **Mac, Linux, MSYS2**
 ```bash
 cd animatcpp
-sh setup.cmd
+./setup.cmd
 ```
 **Windows**
 ```bash
@@ -180,7 +180,7 @@ MABE is an evolution framework, so by default it allows for selection, mutation,
         * Game Theory, Prisoner's Dilemma Player takes no input, is given 1 Update, provides 1 Output.
 * **World** is any evaluation method of quantitatively measuring performance of individual agents of a population. Key concepts for a World are the Population it's operating on, and the Scores the World is responsible to assign each agent.
     * Examples:
-        * Foraging, each agent is iteratively: given inputs based on their location, allowed to update, and their outputs determine movement. Scores is assigned based on food collected.
+        * Foraging, each agent is iteratively: given inputs based on their location, allowed to update, and their outputs determine movement. Score is assigned based on food collected.
         * Classification, each agent is provided with a serial corpus of input patterns, given 1 update after each pattern, and scored based on correct output patterns.
         * Basic Game Theory, each agent is played against a specific strategy set, during which it is given no input, 1 update, and its output and opponent strategy pairing determine its score.
 * **The Rest** The rest of MABE performs Selection, Inheritance, and Mutation among the population(s), as well as keeping track of lineage, performance metrics such as Score, and recording all these data to file. Additionally, MABE handles the technical bits of allowing settings to be configured through text files, and saving and reloading agents or entire populations. Lastly, the Brains and Worlds are modular to facilitate swapping them out and recombining them for new experiments. This is not always possible, as some brains will only work with some worlds, as is the case with the first one in this animat project, but this restriction is not symmetric and the animat world  module was designed to be paired with any brain module.
@@ -273,7 +273,7 @@ There are many HPCC-specific [job specifications](https://wiki.hpcc.msu.edu/disp
 
 Motors2World currently responds to the `GLOBAL-mode` setting if set to `visulualize` it will run the first organism it comes across, and save all lifetime behavior data to a file then quit.
 
-I wrote a generic visualization tool, kind of like Processing, with example code used for animat visualization (2D-foraging) [called vis](https://github.com/joryschossau/vis). While you can use it purely on the command line and with any text editor, it's most enjoyable to use with the full IDE experience with code error detection and autocompletion. To do that you should download the **Godot** game engine (no installation required), import a project, and use the `src/` directory from the `vis` repository as a project directory. After that, since you are not using the command line, you'll need to set the default command line arguments that `vis` expects, under `settings` menu, `project settings`, `General` tab, `Editor` category, and set `Main Run Args` to `--2d --script=readcsv.gd --file=animat_behavior.csv`.
+I wrote a generic visualization tool, kind of like Processing, with example code used for animat visualization (2D-foraging) called [vis (download here)](https://github.com/joryschossau/vis). While you can use it purely on the command line and with any text editor, it's most enjoyable to use with the full IDE experience with code error detection and autocompletion. To do that you should download the **Godot** game engine (no installation required), import a project, and use the `src/` directory from the `vis` repository as a project directory. After that, since you are not using the command line, you'll need to set the default command line arguments that `vis` expects, under `settings` menu, `project settings`, `General` tab, `Editor` category, and set `Main Run Args` to `--2d --script=readcsv.gd --file=animat_behavior.csv`. The `readcsv.gd` file is included in the vis repo in the examples/demos, you can use that. The `animat_behavior.csv` is whatever `.csv` file is generated by the animat `Motors2World` code.
 
 The `vis` tool expects either `--2d` or `--3d`, then the `--script=` paramter should point to your visualization script. The visualization script `readcsv.gd` instructs `vis` to expect another parameter, called `--file`, which is a csv file containing the data it will plot and animate.
 
@@ -362,7 +362,7 @@ Okay, so not really a new thing, but good to remember since I use it sometimes.
 bool not_python = true;
 print("This is ",not_python);
 ```
-The animat code uses and includes the pprint library, which improves quality of life when needing to print things to the screen. The alternative looks like this.
+The animat code uses and includes the pprint library, which improves quality of life when needing to print things to the screen. The alternative using standard c++ looks like this.
 ```c++
 std::cout << "This is ", << not_python << std::endl;
 ```
