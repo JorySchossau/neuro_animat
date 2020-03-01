@@ -5,12 +5,12 @@ If you kind of know what you're doing, here's a reminder of what's involved:
 ```bash
 git clone https://gitlab.msu.edu/neuro_animat/animatcpp
 cd animatcpp
-./setup.cmd (on windows just: setup)
-./mbuild (on windows: mbuild.exe)
+./setup.cmd #(on windows just: setup)
+./mbuild #(on windows: mbuild.exe)
 cd work
-./mabe (now you're running mabe)
-./mabe -s (saves config files)
-./mabe -f *.cfg (now using config files)
+./mabe #(now you're running mabe)
+./mabe -s #(saves config files)
+./mabe -f *.cfg #(now using config files)
 ```
 
 * **Suggested Configuration Values**
