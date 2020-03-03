@@ -176,32 +176,32 @@ auto Motors2Brain::mutate() -> void {
 
     // PhiL (ligands)
     lower_bound = 0.0; upper_bound = 12.0;
-    if (Random::P(mu)) { genome[c] += Random::getNormal(0.0, 0.5); std::clamp(genome[c],lower_bound,upper_bound); } ++c;
-    if (Random::P(mu)) { genome[c] += Random::getNormal(0.0, 0.5); std::clamp(genome[c],lower_bound,upper_bound); } ++c;
-    if (Random::P(mu)) { genome[c] += Random::getNormal(0.0, 0.5); std::clamp(genome[c],lower_bound,upper_bound); } ++c;
-    if (Random::P(mu)) { genome[c] += Random::getNormal(0.0, 0.5); std::clamp(genome[c],lower_bound,upper_bound); } ++c;
-    if (Random::P(mu)) { genome[c] += Random::getNormal(0.0, 0.5); std::clamp(genome[c],lower_bound,upper_bound); } ++c;
+    if (Random::P(mu)) { genome[c] += Random::getNormal(0.0, 0.5); genome[c]=std::clamp(genome[c],lower_bound,upper_bound); } ++c;
+    if (Random::P(mu)) { genome[c] += Random::getNormal(0.0, 0.5); genome[c]=std::clamp(genome[c],lower_bound,upper_bound); } ++c;
+    if (Random::P(mu)) { genome[c] += Random::getNormal(0.0, 0.5); genome[c]=std::clamp(genome[c],lower_bound,upper_bound); } ++c;
+    if (Random::P(mu)) { genome[c] += Random::getNormal(0.0, 0.5); genome[c]=std::clamp(genome[c],lower_bound,upper_bound); } ++c;
+    if (Random::P(mu)) { genome[c] += Random::getNormal(0.0, 0.5); genome[c]=std::clamp(genome[c],lower_bound,upper_bound); } ++c;
 
     // PhiR (receptors)
     lower_bound = 0.0; upper_bound = 12.0;
-    if (Random::P(mu)) { genome[c] += Random::getNormal(0.0, 0.5); std::clamp(genome[c],lower_bound,upper_bound); } ++c;
-    if (Random::P(mu)) { genome[c] += Random::getNormal(0.0, 0.5); std::clamp(genome[c],lower_bound,upper_bound); } ++c;
-    if (Random::P(mu)) { genome[c] += Random::getNormal(0.0, 0.5); std::clamp(genome[c],lower_bound,upper_bound); } ++c;
-    if (Random::P(mu)) { genome[c] += Random::getNormal(0.0, 0.5); std::clamp(genome[c],lower_bound,upper_bound); } ++c;
-    if (Random::P(mu)) { genome[c] += Random::getNormal(0.0, 0.5); std::clamp(genome[c],lower_bound,upper_bound); } ++c;
+    if (Random::P(mu)) { genome[c] += Random::getNormal(0.0, 0.5); genome[c]=std::clamp(genome[c],lower_bound,upper_bound); } ++c;
+    if (Random::P(mu)) { genome[c] += Random::getNormal(0.0, 0.5); genome[c]=std::clamp(genome[c],lower_bound,upper_bound); } ++c;
+    if (Random::P(mu)) { genome[c] += Random::getNormal(0.0, 0.5); genome[c]=std::clamp(genome[c],lower_bound,upper_bound); } ++c;
+    if (Random::P(mu)) { genome[c] += Random::getNormal(0.0, 0.5); genome[c]=std::clamp(genome[c],lower_bound,upper_bound); } ++c;
+    if (Random::P(mu)) { genome[c] += Random::getNormal(0.0, 0.5); genome[c]=std::clamp(genome[c],lower_bound,upper_bound); } ++c;
 
     lower_bound = 0.0;
-    if (Random::P(mu)) { genome[c] += Random::getNormal(0.0, 0.1); std::clamp(genome[c],lower_bound,1.0); } ++c; //sensory_adapt_min_scale = 0.1f; // s0
-    if (Random::P(mu)) { genome[c] += Random::getNormal(0.0, 0.5); std::clamp(genome[c],lower_bound,1.0); } ++c; //sensory_adapt_delta_scale = 0.5f; // a1
-    if (Random::P(mu)) { genome[c] += Random::getNormal(0.0, 0.5); std::clamp(genome[c],lower_bound,20.0); } ++c; //sensory_adapt_delta_threshold = 8.0f; // a2
-    if (Random::P(mu)) { genome[c] += Random::getNormal(0.0, 0.1); std::clamp(genome[c],lower_bound,1.0); } ++c; //homeostatic_target = 0.5f; // a3
-    if (Random::P(mu)) { genome[c] += Random::getNormal(0.0, 100); std::clamp(genome[c],lower_bound,2000.0); } ++c; //decay_proximity = 1000; // t1
-    if (Random::P(mu)) { genome[c] += Random::getNormal(0.0, 100); std::clamp(genome[c],lower_bound,2000.0); } ++c; //decay_eating = 1000; // t2
-    if (Random::P(mu)) { genome[c] += Random::getNormal(0.0, 100); std::clamp(genome[c],lower_bound,2000.0); } ++c; //decay_hunger = 1000; // t3
-    if (Random::P(mu)) { genome[c] += Random::getNormal(0.0, 0.1); std::clamp(genome[c],lower_bound,1.0); } ++c; //decay_proximity_added =  0.3f; // n1
-    if (Random::P(mu)) { genome[c] += Random::getNormal(0.0, 0.03); std::clamp(genome[c],lower_bound,1.0); } ++c; //add_eating_per_calorie = 0.01f; // n2
-    if (Random::P(mu)) { genome[c] += Random::getNormal(0.0, 0.03); std::clamp(genome[c],lower_bound,1.0); } ++c; //add_hunger_per_calorie = 0.01f; // n3
-    if (Random::P(mu)) { genome[c] += Random::getNormal(0.0, 0.1 ); std::clamp(genome[c],lower_bound,1.0); } ++c; //decay_counterhebb = 0.2f; // n4
+    if (Random::P(mu)) { genome[c] += Random::getNormal(0.0, 0.1); genome[c]=std::clamp(genome[c],lower_bound,1.0); } ++c; //sensory_adapt_min_scale = 0.1f; // s0
+    if (Random::P(mu)) { genome[c] += Random::getNormal(0.0, 0.5); genome[c]=std::clamp(genome[c],lower_bound,1.0); } ++c; //sensory_adapt_delta_scale = 0.5f; // a1
+    if (Random::P(mu)) { genome[c] += Random::getNormal(0.0, 0.5); genome[c]=std::clamp(genome[c],lower_bound,20.0); } ++c; //sensory_adapt_delta_threshold = 8.0f; // a2
+    if (Random::P(mu)) { genome[c] += Random::getNormal(0.0, 0.1); genome[c]=std::clamp(genome[c],lower_bound,1.0); } ++c; //homeostatic_target = 0.5f; // a3
+    if (Random::P(mu)) { genome[c] += Random::getNormal(0.0, 100); genome[c]=std::clamp(genome[c],lower_bound,2000.0); } ++c; //decay_proximity = 1000; // t1
+    if (Random::P(mu)) { genome[c] += Random::getNormal(0.0, 100); genome[c]=std::clamp(genome[c],lower_bound,2000.0); } ++c; //decay_eating = 1000; // t2
+    if (Random::P(mu)) { genome[c] += Random::getNormal(0.0, 100); genome[c]=std::clamp(genome[c],lower_bound,2000.0); } ++c; //decay_hunger = 1000; // t3
+    if (Random::P(mu)) { genome[c] += Random::getNormal(0.0, 0.1); genome[c]=std::clamp(genome[c],lower_bound,1.0); } ++c; //decay_proximity_added =  0.3f; // n1
+    if (Random::P(mu)) { genome[c] += Random::getNormal(0.0, 0.03); genome[c]=std::clamp(genome[c],lower_bound,1.0); } ++c; //add_eating_per_calorie = 0.01f; // n2
+    if (Random::P(mu)) { genome[c] += Random::getNormal(0.0, 0.03); genome[c]=std::clamp(genome[c],lower_bound,1.0); } ++c; //add_hunger_per_calorie = 0.01f; // n3
+    if (Random::P(mu)) { genome[c] += Random::getNormal(0.0, 0.1 ); genome[c]=std::clamp(genome[c],lower_bound,1.0); } ++c; //decay_counterhebb = 0.2f; // n4
 }
 
 auto Motors2Brain::resetBrain() -> void {
