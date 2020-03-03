@@ -109,7 +109,15 @@ auto Motors2World::Experience::reset(const ResetConfig& cfg) -> void {
   prey_locs( span::all, span(1,2)) = loc_init_vals * 50 - 25;
   // imprint smell profile on world
   int smell_profile = Motors2World::getSmellProfile(cfg.generation);
+
+  // for fixing the word to a single profile
+  //int smell_profile = Motors2World::getSmellProfile(0);
+  
   prey_urgency = cfg.generation*0.001f;
+
+  // for fixing the world to have prey to only kind of ever run away
+  //prey_urgency = 0.01;
+
   // switch up the smell profile every other generation
   // can add more profiles here later
   if (smell_profile == 0) {
@@ -344,7 +352,8 @@ auto Motors2World::evaluate_single_thread(int analyze, int visualize, int debug)
       if (not world.food_eaten) {
         fitness = 0;
       } else {
-        fitness = pow(world.calories_eaten/world.food_eaten,1.1f); // average calories
+        //fitness = pow(world.calories_eaten/world.food_eaten,1.1f); // average calories
+        fitness = pow(world.food_eaten,1.1f); // average calories (simpler fitness function, just food eaten)
       }
       // record the score (and any other properties you wish)
       // ('append' for list vs 'set' for single entry numbers, strings, etc.)
