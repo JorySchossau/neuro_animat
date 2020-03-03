@@ -33,21 +33,17 @@ std::map<std::string, int> DataMap::knownOutputBehaviors = {
 void FileManager::writeToFile(const std::string &fileName,
                               const std::string &data,
                               const std::string &header) {
-  openFile(
-      fileName,
-      header); // make sure that the file is open and ready to be written to
+  openFile( fileName, header); // make sure that the file is open and ready to be written to
   files[fileName] << data << "\n" << std::flush;
+  closeFile( fileName );
 }
 
 void FileManager::openFile(const std::string &fileName, const std::string &header) {
-  if (files.find(fileName) ==
-      files.end()) { // if file has not be initialized yet
+  if (files.find(fileName) == files.end()) { // if file has not be initialized yet
     files.emplace(make_pair(fileName, std::ofstream())); // make an ofstream for the
                                                     // new file and place in
                                                     // FileManager::files
-    files[fileName].open(
-        std::string(outputPrefix) +
-        fileName);               // clear file contents and open in write mode
+    files[fileName].open( std::string(outputPrefix) + fileName);               // clear file contents and open in write mode
     fileStates[fileName] = true; // this file is now open
     if (!header.empty()) { // if there is a header string, write this to the new
                            // file

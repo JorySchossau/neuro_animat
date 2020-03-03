@@ -38,12 +38,14 @@
 
 volatile sig_atomic_t userExitFlag = 0;
 void catchCtrlC(int signalID) {
-  if (userExitFlag==1) {
-      printf("Early termination requested. Results may be incomplete.\n");
-      raise(SIGTERM);
-  }
-  userExitFlag = 1;
-  printf("\nQuitting after current update. (ctrl-c again to force quit)\n");
+  exit(0);
+  /* deprecated ctrlc handler - no reason to have it */
+  //if (userExitFlag==1) {
+  //    printf("Early termination requested. Results may be incomplete.\n");
+  //    raise(SIGTERM);
+  //}
+  //userExitFlag = 1;
+  //printf("\nQuitting after current update. (ctrl-c again to force quit)\n");
 }
 
 std::map<std::string, std::shared_ptr<Group>>

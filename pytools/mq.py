@@ -115,7 +115,11 @@ then
   # kill the running job after checkpointing
   dmtcp_command -h $DMTCP_COORD_HOST -p $DMTCP_COORD_PORT --quit
   # clean up any generated mabe files that have been checkpointed
-  rm {LOCAL_DIR}/*.csv
+  #rm {LOCAL_DIR}/*.csv
+  #rm -f {LOCAL_DIR}/pop.csv
+  #rm -f {LOCAL_DIR}/max.csv
+  #rm -f {LOCAL_DIR}/LOD_data.csv
+  #rm -f {LOCAL_DIR}/LOD_organisms.csv
   # resubmit the job
   sbatch $SLURM_JOBSCRIPT
 else            # it is a restart run
@@ -134,7 +138,7 @@ else            # it is a restart run
     # kill the running program and quit
     dmtcp_command -h $DMTCP_COORD_HOST -p $DMTCP_COORD_PORT --quit
     # clean up any generated mabe files that have been checkpointed
-    rm {LOCAL_DIR}/*.csv
+    #rm {LOCAL_DIR}/*.csv
     # resubmit this script to slurm
     sbatch $SLURM_JOBSCRIPT
   else
