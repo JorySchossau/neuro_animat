@@ -54,6 +54,8 @@ The Reimers Lab digital animat project is a digital study organism to investigat
     * We detail the various parts of the animat code itself, so you know roughly where things are to add or modify.
 4) **c++17 and Beyond**
     * We go over some of the newer c++ syntax used in the animat code, and point out the special libraries the animat code uses.
+5) **Loading and Analysis**
+    * Shows basics of loading saved agents/populations and how to export behavior data and other data.
 
 ### 1) Software: Install, Build, and Run
 
@@ -369,3 +371,17 @@ std::cout << "This is ", << not_python << std::endl;
 
 **Armadilo math library**
 To achieve speed while maintaining a somewhat familiar MATLAB-like workflow, this animat code is using the Armadillo Linear Algebra library. They have a very helpful [documentation page](http://arma.sourceforge.net/docs.html) that is easily searchable, but I found most things worked just like MATLAB, with only minor c++-ifications due to syntax restrictions.
+
+### 4) Loading and Analysis
+
+MABE has a feature to load 1 or more agents from the saved `*_organisms_*.csv` files that are saved either from population shapshot data, or line of descent data.
+This feature is used through a configuration file called a `population_loader.plf` file. Here is the workflow:
+
+* Generate template population loader file `./mabe -l` (that's a lowercase 'L')
+* Edit this file to specify what you want to load and from where.
+* For instance to load the most fit organism from a late-evolved population: `MASTER = greatest 1 by score_AVE from 'C0__MY_CONDITION_0/101/snapshot_organisms_900.csv'`
+* Be sure to comment out the default `MASTER = default 100` line
+* Use your population loader configuration by setting the population size to be the filename of this config file, either in the settings.cfg or on the command line: `./mabe -p GLOBAL-initPop population_loader.plf`
+
+If you are saving data, such as behavior data, make sure you are running with only one thread (multithreaded doesn't make sense here).
+You will see in the `Motors2World.cpp` there is an if statement / config parameter controlling whether or not behavior data is written to file. That parameter is by convention the `mode` run mode of MABE (`./mabe -p GLOBAL-mode`) and by default the value is `run` but if you set it to `visualize` then the behavior data export will be triggered. You should use this pattern when exporting data, and you can even trigger on using the `analyze` mode.
