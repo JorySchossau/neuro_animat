@@ -126,7 +126,7 @@ void Parameters::readCommandLine(
 MASTER = default 100 # by default :) 
 
 # Example loading fittest organism of a LOD population file
-MASTER = greatest 1 by score_AVE from 'C0__MY_CONDITION_0/101/snapshot_organisms_900.csv'
+#MASTER = greatest 1 by score_AVE from 'C0__MY_CONDITION_0/101/snapshot_organisms_900.csv'
 
 # At the moment default and random mean the same thing. This will change
 #MASTER = random 100
