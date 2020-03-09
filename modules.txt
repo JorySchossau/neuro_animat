@@ -2,10 +2,10 @@
   - Logic16
   * Motors2
   - BlockCatch
-  - Xor
   - TPM
   - Test
   - Berry
+  - Xor
 
 % Genome
   * Circular
@@ -18,8 +18,8 @@
 % Brain
   - Wire
   - CGP
-  - Markov
   * Motors2
+  - Markov
   - LSTM
   - BiLog
   - ANN
