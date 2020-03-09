@@ -21,6 +21,8 @@ std::shared_ptr<ParameterLink<int>> Motors2World::evaluationsPerGenerationPL = P
 
 std::shared_ptr<ParameterLink<int>> Motors2World::numThreadsPL = Parameters::register_parameter("WORLD_MOTORS2-numThreads", 0, "Number of threads to use (each member of the population is evaluated on a single thread) 0 implies max physical cores available assuming hyperthreading or equivalent enabled (logical cores / 2).");
 
+std::shared_ptr<ParameterLink<int>> Motors2World::fitnessFunctionPL = Parameters::register_parameter("WORLD_MOTORS2-fitnessFunction", 0, "Fitness function to use for scoring animats (0: food^1.1; 1: (calories/food)^1.1)");
+
 
 // don't typically need to worry about these 2 parameters,
 // as they are for complex simultaneous deme/group simulation
@@ -352,8 +354,15 @@ auto Motors2World::evaluate_single_thread(int analyze, int visualize, int debug)
       if (not world.food_eaten) {
         fitness = 0;
       } else {
-        //fitness = pow(world.calories_eaten/world.food_eaten,1.1f); // average calories
-        fitness = pow(world.food_eaten,1.1f); // average calories (simpler fitness function, just food eaten)
+        int fitnessFunction = fitnessFunctionPL->get(PT);
+        switch (fitnessFunction) {
+          case 0:
+            fitness = pow(world.food_eaten,1.1f); // (simpler fitness function, just food eaten)
+            break;
+          case 1:
+            fitness = pow(world.calories_eaten/world.food_eaten,1.1f); // average calories (to do well, animats must learn to detect high calorie foods)
+            break;
+        }
       }
       // record the score (and any other properties you wish)
       // ('append' for list vs 'set' for single entry numbers, strings, etc.)

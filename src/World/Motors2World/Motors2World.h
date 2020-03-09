@@ -30,6 +30,7 @@ public:
   //static std::shared_ptr<ParameterLink<int>> numberOfOutputsPL;
   static std::shared_ptr<ParameterLink<int>> evaluationsPerGenerationPL;
   static std::shared_ptr<ParameterLink<int>> numThreadsPL;
+  static std::shared_ptr<ParameterLink<int>> fitnessFunctionPL; // index of which fitness function to use
 
   // int mode;
   // int numberOfOutputs;
