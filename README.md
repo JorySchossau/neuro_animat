@@ -5,7 +5,7 @@ If you kind of know what you're doing, here's a reminder of what's involved:
 ```bash
 git clone https://gitlab.msu.edu/neuro_animat/animatcpp
 cd animatcpp
-./setup.cmd #(on windows just: setup)
+tools/setup.cmd #(on windows just: tools\setup)
 ./mbuild #(on windows: mbuild.exe)
 cd work
 ./mabe #(now you're running mabe)
@@ -66,7 +66,7 @@ The steps to get MABE running are as follows:
 * Install or check that you have a **c++ compiler**
 * Install or check that you have **CMake**
 * **Download** the animat/MABE source code
-* **Run** the setup script on command line
+* **Run** the tools/setup.cmd script on command line
 * **Run** the generated mbuild program on command line
 
 ##### Required Software
@@ -83,7 +83,7 @@ The steps to get MABE running are as follows:
     * **git** if you want to keep up to date with latest changes in the repository, or track your own changes, or share your changes.
 * **Mac OSX**:
     * You can use **xcode** to edit your code, but any text editor will do.
-* **Python 3.6+** This is useful if you want to use the `mq` job control tool (local computer or HPCC modes) or the `mgraph` visualization tool.  Both tools are located in the `pytools/` folder. For more information about these, see the MABE wiki [entry on mq](https://github.com/Hintzelab/MABE/wiki/MQ), or the [entry on mgraph](https://github.com/Hintzelab/MABE/wiki/MGraph). mbuild documentation on the MABE wiki is out of date as mbuild is no longer a python tool, so refer only to this documentation for mbuild.
+* **Python 3.6+** This is useful if you want to use the `mq` job control tool (local computer or HPCC modes) or the `mgraph` visualization tool.  Both tools are located in the `tools/` folder. For more information about these, see the MABE wiki [entry on mq](https://github.com/Hintzelab/MABE/wiki/MQ), or the [entry on mgraph](https://github.com/Hintzelab/MABE/wiki/MGraph). mbuild documentation on the MABE wiki is out of date as mbuild is no longer a python tool, so refer only to this documentation for mbuild.
 
 ##### Get the code
 * The animat code is hosted on MSU's GitLab service [MSU GitLab NeurAnimat](https://gitlab.msu.edu/neuro_animat/animatcpp)
@@ -95,20 +95,20 @@ git clone git@gitlab.msu.edu:neuro_animat/animatcpp
 ```
 
 ##### Run First Time Setup
-*This step is optional, but it sets up the* `mbuild` *executable for you, which is an easier and highly suggested way to interface with MABE. The next sections will assume you are using this tool, or if not, that you are savvy with c++ build tools enough to figure it out.*
-* **Windows**: On a terminal, run the **setup.bat** file in the repository. For example, `animatcpp\setup.cmd`
-* **Mac or Linux or MSYS2**: On a terminal, run the **setup** file in the repository. For example, `animatcpp/setup.cmd`
-*Note: You can run the setup file from anywhere and it will copy the src/Utilities/{OS}_build binary to the repo root and rename it to* `mbuild`
+*This step is optional, but highly suggested because it sets up the* `mbuild` *executable for you, which is an easier way to interface with MABE. The next sections will assume you are using this tool, or if not, that you are savvy with c++ build tools enough to figure it out.*
+* **Windows**: On a terminal, run the **setup.bat** file in the `tools` dir of the repository. For example, `animatcpp\tools\setup.cmd`
+* **Mac or Linux or MSYS2**: On a terminal, run the **setup** file in the repository. For example, `animatcpp/tools/setup.cmd`
+*Note: You can run the setup file from anywhere and it will copy the code/Utilities/{OS}_build binary to the repo root and rename it to* `mbuild`
 
 **Mac, Linux, MSYS2**
 ```bash
 cd animatcpp
-./setup.cmd
+sh tools/setup.cmd
 ```
 **Windows**
 ```bash
 cd animatcpp
-setup.cmd
+tools\setup
 ```
 
 ##### Compile MABE
@@ -127,7 +127,7 @@ mbuild
 ```
 
 ##### Advanced Compilation
-Once you're familiar with building MABE, you may later want to explore altering the build process to exclude or include other modules. This is achieved by modifying the resulting **modules.txt** file, a few entries of which look like this:
+Once you're familiar with building MABE, you may later want to explore altering the build process to exclude or include other modules. This is achieved by modifying the resulting **modules.txt** file, a few entries of which look like this, but the default will be to build the animat 2-Motors configuration:
 
 ```
 % World
@@ -159,7 +159,7 @@ The **mbuild** tool provides many options to simplify and alter the compilation 
     * Using different compilers (such as NVidia GPU, or PGI)
     * In debug or release modes (release is default)
 * Generating a project file to use with your favorite IDE (XCode, Visual Studio, etc.)
-* Updating `modules.txt` based on the modules that exist in the MABE `src/` folder
+* Updating `modules.txt` based on the modules that exist in the MABE `code/` folder
 * Making a new module from scratch
 * Making a new module as a copy of another one
 * Downloading new modules from the MABE_extras repository (these are being updated)
@@ -188,7 +188,7 @@ MABE is an evolution framework, so by default it allows for selection, mutation,
 * **The Rest** The rest of MABE performs Selection, Inheritance, and Mutation among the population(s), as well as keeping track of lineage, performance metrics such as Score, and recording all these data to file. Additionally, MABE handles the technical bits of allowing settings to be configured through text files, and saving and reloading agents or entire populations. Lastly, the Brains and Worlds are modular to facilitate swapping them out and recombining them for new experiments. This is not always possible, as some brains will only work with some worlds, as is the case with the first one in this animat project, but this restriction is not symmetric and the animat world  module was designed to be paired with any brain module.
 
 ##### File Layout
-MABE source code directory structure is representative of the module categories. The important ones are:
+MABE source code directory structure (in `code/`) is representative of the module categories. The important ones are:
 - Archivists
 - Brains
 - Genomes
@@ -258,16 +258,16 @@ The FileManager makes sure to blank the file at the start of MABE, and keep appe
 
 Before you can do anything on the HPCC, 2 of the biggest roadblocks will be simply compiling MABE. Toward that end, here's how on the HPCC:
 
-* you can ONLY do useful things on a dev node. Don't try to do anything on the initial gateway note, except ssh to a dev note. Typical workflow should look like: `ssh hpcc.msu.edu` then `ssh dev-intel18` or some other dev node.
-* load the right git so you can even clone the repo: `module load git`
+* you can ONLY do useful things on a dev node. Don't try to do anything on the initial gateway node, except ssh to a dev node. Typical workflow should look like: `ssh hpcc.msu.edu` then `ssh dev-intel18` or some other dev node. Gateway will list possible dev nodes for you when you first log on.
+* load the right git so you can clone the repo: `module load git`
 * load the right compilers and other tools once you have the repo: see the file `hpcc/loadmodules.sh` for which HPCC modules to load. You can run it by `source hpcc/loadmodules.sh`
 
-There is a lot to know to run things on the HPCC! The `mq` tool helps with this. `mq` manages job submission of replicates and condition combinations, as well as allowing you to make use of the DMTCP system for Distributed MultiThreaded CheckPointing, which allows us to run jobs that will:
+There is a lot to know to run things on the HPCC! The `mq` tool helps with this (in the `tools/` dir). `mq` manages job submission of replicates and condition combinations, as well as allowing you to make use of the DMTCP system for Distributed MultiThreaded CheckPointing, which allows us to run jobs that will:
 
 1) have high priority in the queue by claiming to run less than 4 hours
-2) save state at 3:55 and quit, then resubmit for another 4 hour window, repeating until done.
+2) save state at 3hr 55min runtime, and quit, then resubmit for another 4 hour window, repeating until done.
 
-The complexity of `mq` is in the condition, replication, and other settings configuration. This is done through a text file called `mq_conditions.txt`. A default template you should copy to your `work/` directory is in `pytools/mq_conditions.txt`. At a high level, you can set the number of replicates to run (repeats of a stochastic observation), the MABE parameters you will be changing between conditions, and what values for those parameters you want to explore. To learn more about this, see the [MABE wiki entry](https://github.com/Hintzelab/MABE/wiki/MQ).
+The complexity of `mq` is in the condition, replication, and other settings configuration. This is done through a text file called `mq_conditions.txt`. A default template you should copy to your `work/` directory is in `tools/mq_conditions.txt`. At a high level, you can set the number of replicates to run (repeats of a stochastic observation), the MABE parameters you will be changing between conditions, and what values for those parameters you want to explore. To learn more about this, see the [MABE wiki entry](https://github.com/Hintzelab/MABE/wiki/MQ). In the future this template will be generated by the mq tool and will not exist as a separate file until generated on command.
 
 There are many HPCC-specific [job specifications](https://wiki.hpcc.msu.edu/display/ITH/List+of+Job+Specifications) and adjustments you may need to make (see the bottom of `mq_conditions.txt`), and the ICER's HPCC wiki and support open office hours are great ways to get help with this topic. See the HPCC's [Cluster Resources](https://wiki.hpcc.msu.edu/pages/viewpage.action?pageId=20120131) page to see what kinds of nodes are available. Intel18 has 20 cores (40 fake/hyperthreaded).
 
@@ -378,7 +378,7 @@ MABE has a feature to load 1 or more agents from the saved `*_organisms_*.csv` f
 This feature is used through a configuration file called a `population_loader.plf` file. Here is the workflow:
 
 * Generate template population loader file `./mabe -l` (that's a lowercase 'L')
-* Edit this file to specify what you want to load and from where.
+* Edit this file to specify what you want to load and from where. The default file is full of commented out usage examples.
 * For instance to load the most fit organism from a late-evolved population: `MASTER = greatest 1 by score_AVE from 'C0__MY_CONDITION_0/101/snapshot_organisms_900.csv'`
 * Be sure to comment out the default `MASTER = default 100` line
 * Use your population loader configuration by setting the population size to be the filename of this config file, either in the settings.cfg or on the command line: `./mabe -p GLOBAL-initPop population_loader.plf`
