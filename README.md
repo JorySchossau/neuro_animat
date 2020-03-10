@@ -83,6 +83,7 @@ The steps to get MABE running are as follows:
     * **git** if you want to keep up to date with latest changes in the repository, or track your own changes, or share your changes.
 * **Mac OSX**:
     * You can use **xcode** to edit your code, but any text editor will do.
+    * Once you have Xcode, install the build tools using the command line: `xcode-select --install`
 * **Python 3.6+** This is useful if you want to use the `mq` job control tool (local computer or HPCC modes) or the `mgraph` visualization tool.  Both tools are located in the `tools/` folder. For more information about these, see the MABE wiki [entry on mq](https://github.com/Hintzelab/MABE/wiki/MQ), or the [entry on mgraph](https://github.com/Hintzelab/MABE/wiki/MGraph). mbuild documentation on the MABE wiki is out of date as mbuild is no longer a python tool, so refer only to this documentation for mbuild.
 
 ##### Get the code
