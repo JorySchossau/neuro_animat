@@ -64,15 +64,15 @@ The digital animat code uses a software framework called MABE (Modular Agent-Bas
 
 ##### Overview
 The overview of steps to get MABE running are as follows:
-* 1A) Install or check that you have a **c++ compiler**
-* 1B) Install or check that you have **CMake**
+* 1a) Install or check that you have a **c++ compiler**
+* 1b) Install or check that you have **CMake**
 * 2) **Download** the animat/MABE source code
 * 3) **Run** the tools/setup.cmd script on command line
 * 4) **Run** the generated mbuild program on command line
 
 ##### 1) Required Software
-* 1A) **A C++ compiler** such as Visual Studio, XCode, GCC, or Clang. Others may work, but these are guaranteed to work. See `Optional Software` below for more.
-* 1B) **CMake** 
+* 1a) **A C++ compiler** such as Visual Studio, XCode, GCC, or Clang. Others may work, but these are guaranteed to work. See `Optional Software` below for more.
+* 1b) **CMake** 
     * Windows: Install with all defaults from [cmake.org](https://cmake.org/download/) (get the ...x64.msi file).
     * OSX: Can't use the homebrew one - please uninstall it. Get cmake from [cmake.org](https://cmake.org/download/) (get the ...dmg file)
     
