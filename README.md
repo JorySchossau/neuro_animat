@@ -277,8 +277,8 @@ Once you have configured your experimental conditions in your `work/` copy of `m
 * `python ../tools/mq.py -l`: run your full experiment on your local computer
 * `python ../tools/mq.py -n`: make the empty directories, and report would _would_ be run, but don't actually run.
 * `python ../tools/mq.py -t`: test run. Tries to force very few replicates and very small number of generations, but runs all conditions. Good for testing if all the right input and output files look and work okay.
-* `python ../tools/mq.py -d`: submit your full experiment to the HPCC, asking for the job run-time window you specified in `mq_conditions.txt`
-* `python ../tools/mq.py -i`: run in indefinite mode (recommended). This mode runs your job in 4 hr chunks, saving progress at the end of each chunk. Terminates when your request number of generations is reached. The reason this is good is the HPCC queueuing system prioritizes jobs that run in 4 hours or less and lets those jobs run on a wider number of computers.
+* `python ../tools/mq.py -d`: submit your full experiment to the HPCC, asking for the job run-time window you specified in `mq_conditions.txt` Must be running this command on the HPCC for it to work.
+* `python ../tools/mq.py -i`: run in indefinite mode (recommended). This mode runs your job in 4 hr chunks, saving progress at the end of each chunk. Terminates when your request number of generations is reached. The reason this is good is the HPCC queueuing system prioritizes jobs that run in 4 hours or less and lets those jobs run on a wider number of computers. Must be running this command on the HPCC for it to work.
 
 There are many HPCC-specific [job specifications](https://wiki.hpcc.msu.edu/display/ITH/List+of+Job+Specifications) and adjustments you may need to make (see the bottom of `mq_conditions.txt`), and the ICER's HPCC wiki and support open office hours are great ways to get help with this topic. See the HPCC's [Cluster Resources](https://wiki.hpcc.msu.edu/pages/viewpage.action?pageId=20120131) page to see what kinds of nodes are available. Intel18 has 20 cores (40 fake/hyperthreaded).
 
