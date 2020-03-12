@@ -63,16 +63,16 @@ The Reimers Lab digital animat project is a digital study organism to investigat
 The digital animat code uses a software framework called MABE (Modular Agent-Based Evolution framework) to facilitate faster scientific investigation.
 
 ##### Overview
-The steps to get MABE running are as follows:
-* Install or check that you have a **c++ compiler**
-* Install or check that you have **CMake**
-* **Download** the animat/MABE source code
-* **Run** the tools/setup.cmd script on command line
-* **Run** the generated mbuild program on command line
+The overview of steps to get MABE running are as follows:
+* 1A) Install or check that you have a **c++ compiler**
+* 1B) Install or check that you have **CMake**
+* 2) **Download** the animat/MABE source code
+* 3) **Run** the tools/setup.cmd script on command line
+* 4) **Run** the generated mbuild program on command line
 
-##### Required Software
-* **A C++ compiler** such as Visual Studio, GCC, or Clang. Others may work, but these are guaranteed to work.
-* **CMake** 
+##### 1) Required Software
+* 1A) **A C++ compiler** such as Visual Studio, XCode, GCC, or Clang. Others may work, but these are guaranteed to work. See `Optional Software` below for more.
+* 1B) **CMake** 
     * Windows: Install with all defaults from [cmake.org](https://cmake.org/download/) (get the ...x64.msi file).
     * OSX: Can't use the homebrew one - please uninstall it. Get cmake from [cmake.org](https://cmake.org/download/) (get the ...dmg file)
     
@@ -87,7 +87,7 @@ The steps to get MABE running are as follows:
     * Once you have Xcode, install the build tools using the command line: `xcode-select --install`
 * **Python 3.6+** This is useful if you want to use the `mq` job control tool (local computer or HPCC modes) or the `mgraph` visualization tool.  Both tools are located in the `tools/` folder. For more information about these, see the MABE wiki [entry on mq](https://github.com/Hintzelab/MABE/wiki/MQ), or the [entry on mgraph](https://github.com/Hintzelab/MABE/wiki/MGraph). mbuild documentation on the MABE wiki is out of date as mbuild is no longer a python tool, so refer only to this documentation for mbuild.
 
-##### Get the code
+##### 2) Get the code
 * The animat code is hosted on MSU's GitLab service [MSU GitLab NeurAnimat](https://gitlab.msu.edu/neuro_animat/animatcpp)
 * Either:
     * git clone the repository *(suggested)*
@@ -96,7 +96,7 @@ The steps to get MABE running are as follows:
 git clone git@gitlab.msu.edu:neuro_animat/animatcpp
 ```
 
-##### Run First Time Setup
+##### 3) Run First Time Setup
 *This step is optional, but highly suggested because it sets up the* `mbuild` *executable for you, which is an easier way to interface with MABE. The next sections will assume you are using this tool, or if not, that you are savvy with c++ build tools enough to figure it out.*
 * **Windows**: On a terminal, run the **setup.bat** file in the `tools` dir of the repository. For example, `animatcpp\tools\setup.cmd`
 * **Mac or Linux or MSYS2**: On a terminal, run the **setup** file in the repository. For example, `animatcpp/tools/setup.cmd`
@@ -113,7 +113,7 @@ cd animatcpp
 tools\setup
 ```
 
-##### Compile MABE
+##### 4) Compile MABE
 * Run `mbuild` inside the repository.
     * *If you've never run things on the command line before:*
         * *On Windows:* `cd animatcpp` *then* `mbuild` *or* `mbuild.exe` *will both work*
