@@ -4,7 +4,9 @@ if (enable_World_Motors2)
 
   include_directories(${CMAKE_CURRENT_LIST_DIR}) # allow "#include <animat_utilities>"
   target_sources(${EXE} PRIVATE ${CMAKE_CURRENT_LIST_DIR}/Motors2World.cpp)
+  target_sources(${EXE} PRIVATE ${CMAKE_CURRENT_LIST_DIR}/Motors2World.h)
   target_sources(${EXE} PRIVATE ${CMAKE_CURRENT_LIST_DIR}/animat_utilities.cpp)
+  target_sources(${EXE} PRIVATE ${CMAKE_CURRENT_LIST_DIR}/animat_utilities)
 
   # LAPACK / MKL
   find_package(LAPACK REQUIRED)
