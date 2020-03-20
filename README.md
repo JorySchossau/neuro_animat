@@ -66,15 +66,18 @@ The digital animat code uses a software framework called MABE (Modular Agent-Bas
 The overview of steps to get MABE running are as follows:
 * 1a) Install or check that you have a **c++ compiler**
 * 1b) Install or check that you have **CMake**
-* 2) **Download** the animat/MABE source code
-* 3) **Run** the tools/setup.cmd script on command line
-* 4) **Run** the generated mbuild program on command line
+* 1c) Windows only: Install Intel's MKL for fast math ops
+* 2 ) **Download** the animat/MABE source code
+* 3 ) **Run** the tools/setup.cmd script on command line
+* 4 ) **Run** the generated mbuild program on command line
 
 ##### 1) Required Software
 * 1a) **A C++ compiler** such as Visual Studio, XCode, GCC, or Clang. Others may work, but these are guaranteed to work. See `Optional Software` below for more.
 * 1b) **CMake** 
     * Windows: Install with all defaults from [cmake.org](https://cmake.org/download/) (get the ...x64.msi file).
     * OSX: Can't use the homebrew one - please uninstall it. Get cmake from [cmake.org](https://cmake.org/download/) (get the ...dmg file)
+* 1c) **Intel MKL**
+    * Register and download but install ONLY AFTER Visual Studio: [https://software.intel.com/en-us/mkl/choose-download/windows](https://software.intel.com/en-us/mkl/choose-download/windows)
     
 ##### Optional Software
 * **Windows**: 
@@ -375,7 +378,7 @@ std::cout << "This is ", << not_python << std::endl;
 **Armadilo math library**
 To achieve speed while maintaining a somewhat familiar MATLAB-like workflow, this animat code is using the Armadillo Linear Algebra library. They have a very helpful [documentation page](http://arma.sourceforge.net/docs.html) that is easily searchable, but I found most things worked just like MATLAB, with only minor c++-ifications due to syntax restrictions.
 
-### 4) Loading and Analysis
+### 5) Loading and Analysis
 
 MABE has a feature to load 1 or more agents from the saved `*_organisms_*.csv` files that are saved either from population shapshot data, or line of descent data.
 This feature is used through a configuration file called a `population_loader.plf` file. Here is the workflow:
