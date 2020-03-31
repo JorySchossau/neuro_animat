@@ -281,12 +281,6 @@ See the section on 'Running on the HPCC' below for information on submitting job
 
 #### Running on the HPCC
 
-Before you can do anything on the HPCC, 2 of the biggest roadblocks will be simply compiling MABE. Toward that end, here's how on the HPCC:
-
-* you can ONLY do useful things on a dev node. Don't try to do anything on the initial gateway node, except ssh to a dev node. Typical workflow should look like: `ssh hpcc.msu.edu` then `ssh dev-intel18` or some other dev node. Gateway will list possible dev nodes for you when you first log on.
-* load the right git so you can clone the repo: `module load git`
-* load the right compilers and other tools once you have the repo: see the file `hpcc/loadmodules.sh` for which HPCC modules to load. You can run it by `source hpcc/loadmodules.sh`
-
 There is a lot to know to run things on the HPCC! The `mq` tool helps with this (in the `tools/` dir). `mq` manages job submission of replicates and condition combinations, as well as allowing you to make use of the DMTCP system for Distributed MultiThreaded CheckPointing, which allows us to run jobs that will:
 
 1) have high priority in the queue by claiming to run less than 4 hours
