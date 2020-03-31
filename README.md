@@ -87,7 +87,7 @@ The overview of steps to get MABE running are as follows:
 * 3 ) **Run** the tools/setup.cmd script on command line
 * 4 ) **Run** the generated mbuild program on command line
 
-## Window Setup
+## Windows Setup
 
 #### 1) (Windows) Required Software
 * 1a) **A C++ compiler** (fully updated only!) such as Visual Studio, XCode, GCC, or Clang. Others may work, but these are guaranteed to work. See `Optional Software` below for more.
