@@ -532,12 +532,10 @@ This feature is used through a configuration file called a `population_loader.pl
 * For instance to load the most fit organism from a late-evolved population: `MASTER = greatest 1 by score_AVE from 'C0__MY_CONDITION_0/101/snapshot_organisms_900.csv'`
 * Be sure to comment out the default `MASTER = default 100` line
 * Use your population loader configuration by setting the population size to be the filename of this config file, either in the settings.cfg or on the command line:
-* 
-* ```bash
-* `./mabe -p GLOBAL-initPop population_loader.plf`
-* ## instead of the default
-* `./mabe -p GLOBAL-initPop 100
-* ```
+ 
+```bash
+./mabe -p GLOBAL-initPop population_loader.plf
+```
 
 If you are saving data, such as behavior data, make sure you are running with only one thread (multithreaded doesn't make sense here).
 You will see in the `Motors2World.cpp` there is an if statement / config parameter controlling whether or not behavior data is written to file. That parameter is by convention the `mode` run mode of MABE (`./mabe -p GLOBAL-mode`) and by default the value is `run` but if you set it to `visualize` then the behavior data export will be triggered. You should use this pattern when exporting data, and you can even trigger on using the `analyze` mode.
