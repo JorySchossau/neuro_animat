@@ -36,6 +36,7 @@ cd work
         * elitismRange = 10 # this is how many elites to select
 
 ##### Run MABE
+* **Note:** If on the HPCC, you must load the appropriate compilers and libraries before running mabe, every time you log in: `source hpcc/loadmodules.sh`
 * When successful, compiling MABE results in a mabe executable in the `work/` directory. `cd` into `work` and try running it to see if it works. By default it will run 110 generations of a Test environment, which should fly by in 1 or 2 seconds.
 *(Remember, running an executable on the command line in Windows:* `exename`*or*`exename.exe` *and on Linux or Mac or MSYS2:* `./exename` *)*
 
