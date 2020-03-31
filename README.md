@@ -10,7 +10,7 @@ tools/setup.cmd #(on windows just: tools\setup)
 cd work
 ## Now can run any of the following:
 ./mabe #(basic running mabe)
-./mabe -s #(saves config files)
+./mabe -s #(saves config files - see 'suggested configuration values' below)
 ./mabe -f *.cfg #(now using config files)
 ```
 
@@ -35,6 +35,10 @@ cd work
         * elitismCount = 10 # this is how many offspring each elite member produces
         * elitismRange = 10 # this is how many elites to select
 
+##### Run MABE
+* When successful, compiling MABE results in a mabe executable in the `work/` directory. `cd` into `work` and try running it to see if it works. By default it will run 110 generations of a Test environment, which should fly by in 1 or 2 seconds.
+*(Remember, running an executable on the command line in Windows:* `exename`*or*`exename.exe` *and on Linux or Mac or MSYS2:* `./exename` *)*
+
 #### Frequently Asked Questions
 
 **When do I have to recompile with mbuild?**
@@ -43,12 +47,17 @@ If you've changed source code *or* changed which modules are included/excluded i
 **When do I have to generate settings files (mabe -s) after building?**
 Only if you've added or removed settings defined in the `.h` and `.cpp` files. However, if you are only adding settings, you can have MABE keep your old settings and merge with the new ones it knows about: `mabe -f *.cfg -s` means, load the config files and the values I've set, now save out the settings again.
 
+**On the HPCC, do I need to do everything again every time?**
+No, if you've already compiled MABE, you will still find it in your `work/` directory. But you must do these steps every time you log in:
+* log into a dev node
+* load the hpcc modules for compiling or running MABE `source hpcc/loadmodules.sh`
+
 #### Overview
 
 The Reimers Lab digital animat project is a digital study organism to investigate questions around neurodevelopment, lifetime learning, evolutionary genetics, and evolutionary pressures. The rest of this document describes how to get the code, build and run, and what the sections of code are that you may be interested to modify.
 
 1) **Software: Install, Build, and Run**
-    * We will get you up and running with the code base and comfortable compiling the code.
+    * We will get you up and running with the code base and comfortable compiling the code, with a separate guide for each OS.
 2) **MABE Architecture and Configuration**
     * We go over how MABE works, the different code sections, and how the animat code fits in.
 3) **Animat Architecture**
@@ -62,35 +71,35 @@ The Reimers Lab digital animat project is a digital study organism to investigat
 
 The digital animat code uses a software framework called MABE (Modular Agent-Based Evolution framework) to facilitate faster scientific investigation.
 
-##### Overview
+#### Jump to Setup Section
+* [Windows](#windows-setup)
+* [MacOSX](#mac-setup)
+* [Linux](#linux-setup)
+* [HPCC](#hpcc-setup)
+
+#### Overview
 The overview of steps to get MABE running are as follows:
-* 1a) Install or check that you have a **c++ compiler**
-* 1b) Install or check that you have **CMake**
+* 1a) Install or check that you have a **c++ compiler** (special HPCC instructions - see below)
+* 1b) Install or check that you have **CMake** (special HPCC instructions - see below)
 * 1c) Windows only: Install Intel's MKL for fast math ops
 * 2 ) **Download** the animat/MABE source code
 * 3 ) **Run** the tools/setup.cmd script on command line
 * 4 ) **Run** the generated mbuild program on command line
 
-##### 1) Required Software
-* 1a) **A C++ compiler** such as Visual Studio, XCode, GCC, or Clang. Others may work, but these are guaranteed to work. See `Optional Software` below for more.
-* 1b) **CMake** 
-    * Windows: Install with all defaults from [cmake.org](https://cmake.org/download/) (get the ...x64.msi file).
-    * OSX: Can't use the homebrew one - please uninstall it. Get cmake from [cmake.org](https://cmake.org/download/) (get the ...dmg file)
-* 1c) **Intel MKL**
-    * Register and download but install ONLY AFTER Visual Studio: [https://software.intel.com/en-us/mkl/choose-download/windows](https://software.intel.com/en-us/mkl/choose-download/windows)
-    
-##### Optional Software
-* **Windows**: 
-    * Use the **MSYS2** terminal instead of the normal terminal. Go the extra mile to change your home directory to be the same as on Windows terminal for better quality of life. See the MABE wiki Steps 1 and 2 of the [MinGW and Terminal](https://github.com/hintzelab/mabe/wiki/Installation-and-getting-started-with-MABE#installing-only-mingw-and-terminal-on-windows) for how to install and set up MSYS2.
-    * **GCC** or Clang can be installed once you install MSYS2. GCC is faster than visual studio to compile.
-    * **Visual Studio Code** is a popular editor for source code, especiallly suggested if you don't install the full Visual Studio.
-    * **git** if you want to keep up to date with latest changes in the repository, or track your own changes, or share your changes.
-* **Mac OSX**:
-    * You can use **xcode** to edit your code, but any text editor will do.
-    * Once you have Xcode, install the build tools using the command line: `xcode-select --install`
-* **Python 3.6+** This is useful if you want to use the `mq` job control tool (local computer or HPCC modes) or the `mgraph` visualization tool.  Both tools are located in the `tools/` folder. For more information about these, see the MABE wiki [entry on mq](https://github.com/Hintzelab/MABE/wiki/MQ), or the [entry on mgraph](https://github.com/Hintzelab/MABE/wiki/MGraph). mbuild documentation on the MABE wiki is out of date as mbuild is no longer a python tool, so refer only to this documentation for mbuild.
+## Window Setup
 
-##### 2) Get the code
+#### 1) (Windows) Required Software
+* 1a) **A C++ compiler** (fully updated only!) such as Visual Studio, XCode, GCC, or Clang. Others may work, but these are guaranteed to work. See `Optional Software` below for more.
+* 1b) **CMake** Install with all defaults from [cmake.org](https://cmake.org/download/) (get the ...x64.msi file).
+* 1c) **Intel MKL** Register and download but install ONLY AFTER Visual Studio: [https://software.intel.com/en-us/mkl/choose-download/windows](https://software.intel.com/en-us/mkl/choose-download/windows)
+
+#### (Windows) Optional Software
+* Use the **MSYS2** terminal instead of the normal terminal. Go the extra mile to change your home directory to be the same as on Windows terminal for better quality of life. See the MABE wiki Steps 1 and 2 of the [MinGW and Terminal](https://github.com/hintzelab/mabe/wiki/Installation-and-getting-started-with-MABE#installing-only-mingw-and-terminal-on-windows) for how to install and set up MSYS2.
+* **GCC** or Clang can be installed once you install MSYS2. GCC is faster than visual studio to compile.
+* **Visual Studio Code** is a popular editor for source code, especiallly suggested if you don't install the full Visual Studio.
+* **git** if you want to keep up to date with latest changes in the repository, or track your own changes, or share your changes.
+
+#### 2) (Windows) Get the code
 * The animat code is hosted on MSU's GitLab service [MSU GitLab NeurAnimat](https://gitlab.msu.edu/neuro_animat/animatcpp)
 * Either:
     * git clone the repository *(suggested)*
@@ -99,37 +108,204 @@ The overview of steps to get MABE running are as follows:
 git clone git@gitlab.msu.edu:neuro_animat/animatcpp
 ```
 
-##### 3) Run First Time Setup
+#### 3) (Windows) Run First Time Setup
 *This step is optional, but highly suggested because it sets up the* `mbuild` *executable for you, which is an easier way to interface with MABE. The next sections will assume you are using this tool, or if not, that you are savvy with c++ build tools enough to figure it out.*
 * **Windows**: On a terminal, run the **setup.bat** file in the `tools` dir of the repository. For example, `animatcpp\tools\setup.cmd`
 * **Mac or Linux or MSYS2**: On a terminal, run the **setup** file in the repository. For example, `animatcpp/tools/setup.cmd`
 *Note: You can run the setup file from anywhere and it will copy the code/Utilities/{OS}_build binary to the repo root and rename it to* `mbuild`
 
-**Mac, Linux, MSYS2**
-```bash
-cd animatcpp
-sh tools/setup.cmd
-```
-**Windows**
+**Windows CMD / Terminal**
 ```bash
 cd animatcpp
 tools\setup
 ```
+**Windows MSYS2 Terminal**
+```bash
+cd animatcpp
+sh tools/setup.cmd
+```
 
-##### 4) Compile MABE
+#### 4) (Windows) Compile MABE
 * Run `mbuild` inside the repository.
     * *If you've never run things on the command line before:*
-        * *On Windows:* `cd animatcpp` *then* `mbuild` *or* `mbuild.exe` *will both work*
-        * *On Mac or Linux:* `cd animatcpp` then `./mbuild` *(the ./ means run a file that is in the current directory)
+    * `cd animatcpp` *then* `mbuild` *or* `mbuild.exe` *will both work*
 
-**Mac, Linux, MSYS2**
-```bash
-./mbuild
-```
-**Windows**
+**Windows CMD / Terminal**
 ```bash
 mbuild
 ```
+**MSYS2 Terminal**
+```bash
+./mbuild
+```
+
+-------
+Finished! Now proceed with the `.cfg` file configuration and general running instructions at the top of this wiki.
+-------
+
+
+
+
+## Mac Setup
+
+#### 1) (Mac) Required Software
+* 1a) **A C++ compiler** (fully updated only!) such as Visual Studio, XCode, GCC, or Clang. Others may work, but these are guaranteed to work. See `Optional Software` below for more.
+* 1b) **CMake** We can't use the homebrew CMake - please uninstall it. Get cmake from [cmake.org](https://cmake.org/download/) (get the ...dmg file)
+
+#### (Mac) Optional Software
+* **XCode**:
+    * You can use **xcode** to edit your code, but any text editor will do, please update it to the latest available from Apple, or install your own C++ compiler from homebrew if your computer is too old to be updated.
+    * Once you have Xcode, install the build tools using the command line: `xcode-select --install`
+* **Python 3.6+** This is useful if you want to use the `mq` job control tool (local computer or HPCC modes) or the `mgraph` visualization tool.  Both tools are located in the `tools/` folder. For more information about these, see the MABE wiki [entry on mq](https://github.com/Hintzelab/MABE/wiki/MQ), or the [entry on mgraph](https://github.com/Hintzelab/MABE/wiki/MGraph). mbuild documentation on the MABE wiki is out of date as mbuild is no longer a python tool, so refer only to this documentation for mbuild.
+
+#### 2) (Mac) Get the code
+* The animat code is hosted on MSU's GitLab service [MSU GitLab NeurAnimat](https://gitlab.msu.edu/neuro_animat/animatcpp)
+* Either:
+    * git clone the repository *(suggested)*
+    * download the zip of the repository *(easiest, but eliminates ability to record your own changes and share)*
+```bash
+git clone git@gitlab.msu.edu:neuro_animat/animatcpp
+```
+
+#### 3) (Mac) Run First Time Setup
+*This step is optional, but highly suggested because it sets up the* `mbuild` *executable for you, which is an easier way to interface with MABE. The next sections will assume you are using this tool, or if not, that you are savvy with c++ build tools enough to figure it out.*
+* **Windows**: On a terminal, run the **setup.bat** file in the `tools` dir of the repository. For example, `animatcpp\tools\setup.cmd`
+* **Mac or Linux or MSYS2**: On a terminal, run the **setup** file in the repository. For example, `animatcpp/tools/setup.cmd`
+*Note: You can run the setup file from anywhere and it will copy the code/Utilities/{OS}_build binary to the repo root and rename it to* `mbuild`
+
+```bash
+cd animatcpp
+tools/setup.cmd
+```
+
+#### 4) (Mac) Compile MABE
+* Run `mbuild` inside the repository.
+    * *If you've never run things on the command line before:*
+    * `cd animatcpp` then `./mbuild` (the ./ means run a file that is in the current directory)
+
+```bash
+./mbuild
+```
+
+-------
+Finished! Now proceed with the `.cfg` file configuration and general running instructions at the top of this wiki.
+-------
+
+
+## Linux Setup
+
+#### 1) (Linux) Required Software
+* 1a) **A C++ compiler** A modern GCC, Clang, or PGI, etc. should work as long as it supports c++17.
+* 1b) **CMake** Ubuntu 18.04 CMake is the minimum required, so most people should have access to a new enough version. If not, it's not hard to build from source.
+
+#### (Linux) Optional Software
+* **Python 3.6+** This is useful if you want to use the `mq` job control tool (local computer or HPCC modes) or the `mgraph` visualization tool.  Both tools are located in the `tools/` folder. For more information about these, see the MABE wiki [entry on mq](https://github.com/Hintzelab/MABE/wiki/MQ), or the [entry on mgraph](https://github.com/Hintzelab/MABE/wiki/MGraph). mbuild documentation on the MABE wiki is out of date as mbuild is no longer a python tool, so refer only to this documentation for mbuild.
+
+#### 2) (Linux) Get the code
+* The animat code is hosted on MSU's GitLab service [MSU GitLab NeurAnimat](https://gitlab.msu.edu/neuro_animat/animatcpp)
+* Either:
+    * git clone the repository *(suggested)*
+    * download the zip of the repository *(easiest, but eliminates ability to record your own changes and share)*
+```bash
+git clone git@gitlab.msu.edu:neuro_animat/animatcpp
+```
+
+#### 3) (Linux) Run First Time Setup
+*This step is optional, but highly suggested because it sets up the* `mbuild` *executable for you, which is an easier way to interface with MABE. The next sections will assume you are using this tool, or if not, that you are savvy with c++ build tools enough to figure it out.*
+* On a terminal, run the **setup** file in the repository. For example, `animatcpp/tools/setup.cmd`
+*Note: You can run the setup file from anywhere and it will copy the code/Utilities/{OS}_build binary to the repo root and rename it to* `mbuild`
+
+```bash
+cd animatcpp
+tools/setup.cmd
+```
+
+#### 4) (Linux) Compile MABE
+* Run `mbuild` inside the repository.
+    * *If you've never run things on the command line before:*
+    * `cd animatcpp` then `./mbuild` (the ./ means run a file that is in the current directory)
+
+```bash
+./mbuild
+```
+
+-------
+Finished! Now proceed with the `.cfg` file configuration and general running instructions at the top of this wiki.
+-------
+
+
+
+## HPCC Setup
+
+#### 1) (HPCC) Required Software
+* Always, log into a dev node. Do not try to compile or run software on the Gateway node, or you will get strange errors.
+The HPCC doesn't allow you to install software, but instead provides many different versions and installations you can 'activate'. All required software can be activated using the included `hpcc/loadmodules.sh` in a later step.
+
+##### (HPCC) Optional Software
+Skip this unless you are interested in alternative c++ compilers. It's possible to use specialty c++ compilers, such as PGI, or CUDA if you need that functionality. See `./mbuild -h` once you have everything working to see about changing compilers.
+
+#### 2) (HPCC) Get the code
+* The animat code is hosted on MSU's GitLab service [MSU GitLab NeurAnimat](https://gitlab.msu.edu/neuro_animat/animatcpp)
+* Either:
+    * git clone the repository *(suggested)*
+    * download the zip of the repository *(easiest, but eliminates ability to record your own changes and share)*
+```bash
+git clone git@gitlab.msu.edu:neuro_animat/animatcpp
+```
+
+#### 3) (HPCC) Run First Time Setup
+* Load required software for running or compiling MABE: `source hpcc/loadmodules.sh` (this will be required every time you log in)
+* *This step is optional, but highly suggested because it sets up the* `mbuild` *executable for you, which is an easier way to interface with MABE. The next sections will assume you are using this tool, or if not, that you are savvy with c++ build tools enough to figure it out.*
+* On a terminal, run the **setup** file in the repository. For example, `animatcpp/tools/setup.cmd`
+*Note: You can run the setup file from anywhere and it will copy the code/Utilities/{OS}_build binary to the repo root and rename it to* `mbuild`
+
+```bash
+cd animatcpp
+tools/setup.cmd
+```
+
+#### 4) (HPCC) Compile MABE
+* Load required software for running or compiling MABE (if you haven't already): `source hpcc/loadmodules.sh` (this will be required every time you log in)
+* Run `mbuild` inside the repository.
+    * *If you've never run things on the command line before:*
+    * `cd animatcpp` then `./mbuild` (the ./ means run a file that is in the current directory)
+
+```bash
+./mbuild
+```
+
+-------
+Finished! Now proceed with the `.cfg` file configuration and general running instructions at the top of this wiki.
+See the section on 'Running on the HPCC' below for information on submitting jobs.
+-------
+
+#### Running on the HPCC
+
+Before you can do anything on the HPCC, 2 of the biggest roadblocks will be simply compiling MABE. Toward that end, here's how on the HPCC:
+
+* you can ONLY do useful things on a dev node. Don't try to do anything on the initial gateway node, except ssh to a dev node. Typical workflow should look like: `ssh hpcc.msu.edu` then `ssh dev-intel18` or some other dev node. Gateway will list possible dev nodes for you when you first log on.
+* load the right git so you can clone the repo: `module load git`
+* load the right compilers and other tools once you have the repo: see the file `hpcc/loadmodules.sh` for which HPCC modules to load. You can run it by `source hpcc/loadmodules.sh`
+
+There is a lot to know to run things on the HPCC! The `mq` tool helps with this (in the `tools/` dir). `mq` manages job submission of replicates and condition combinations, as well as allowing you to make use of the DMTCP system for Distributed MultiThreaded CheckPointing, which allows us to run jobs that will:
+
+1) have high priority in the queue by claiming to run less than 4 hours
+2) save state at 3hr 55min runtime, and quit, then resubmit for another 4 hour window, repeating until done.
+
+The complexity of `mq` is in the condition, replication, and other settings configuration. This is done through a text file called `mq_conditions.txt`. A default template you should copy to your `work/` directory is in `tools/mq_conditions.txt`. At a high level, you can set the number of replicates to run (repeats of a stochastic observation), the MABE parameters you will be changing between conditions, and what values for those parameters you want to explore. To learn more about this, see the [MABE wiki entry](https://github.com/Hintzelab/MABE/wiki/MQ). In the future this template will be generated by the mq tool and will not exist as a separate file until generated on command.
+
+Once you have configured your experimental conditions in your `work/` copy of `mq_conditions.txt`, then you can run them using the `mq` tool. There are several ways to run your experiment. Note you should edit the HPCC parameters at the bottom of the file to suit your job specifications. These are the same parameters as for any HPCC job submission - see iCER wiki or ask their staff for more information.
+
+* `python ../tools/mq.py -h`: lists the help information, some of which are listed here
+* `python ../tools/mq.py -l`: run your full experiment on your local computer
+* `python ../tools/mq.py -n`: make the empty directories, and report would _would_ be run, but don't actually run.
+* `python ../tools/mq.py -t`: test run. Tries to force very few replicates and very small number of generations, but runs all conditions. Good for testing if all the right input and output files look and work okay.
+* `python ../tools/mq.py -d`: submit your full experiment to the HPCC, asking for the job run-time window you specified in `mq_conditions.txt` Must be running this command on the HPCC for it to work.
+* `python ../tools/mq.py -i`: run in indefinite mode (recommended). This mode runs your job in 4 hr chunks, saving progress at the end of each chunk. Terminates when your request number of generations is reached. The reason this is good is the HPCC queueuing system prioritizes jobs that run in 4 hours or less and lets those jobs run on a wider number of computers. Must be running this command on the HPCC for it to work.
+
+There are many HPCC-specific [job specifications](https://wiki.hpcc.msu.edu/display/ITH/List+of+Job+Specifications) and adjustments you may need to make (see the bottom of `mq_conditions.txt`), and the ICER's HPCC wiki and support open office hours are great ways to get help with this topic. See the HPCC's [Cluster Resources](https://wiki.hpcc.msu.edu/pages/viewpage.action?pageId=20120131) page to see what kinds of nodes are available. Intel18 has 20 cores (40 fake/hyperthreaded).
+
+
 
 ##### Advanced Compilation
 Once you're familiar with building MABE, you may later want to explore altering the build process to exclude or include other modules. This is achieved by modifying the resulting **modules.txt** file, a few entries of which look like this, but the default will be to build the animat 2-Motors configuration:
@@ -169,11 +345,9 @@ The **mbuild** tool provides many options to simplify and alter the compilation 
 * Making a new module as a copy of another one
 * Downloading new modules from the MABE_extras repository (these are being updated)
 
-**Note** for Windows-MSYS2 users: colored display won't show up properly
+**Note** for Windows-MSYS2 users: colored display won't show up properly unless you always run by prepending `winpty`: `winpty ./mbuild`, but this is not necessary. You can install `winpty` through the package manager MSYS2 tool: `pacman -Ss winpty`
 
-##### Run MABE
-* When successful, compiling MABE results in a mabe executable in the `work/` directory. `cd` into `work` and try running it to see if it works. By default it will run 110 generations of a Test environment, which should fly by in 1 or 2 seconds.
-*(Remenber, running an executable on the command line is Windows:* `exename`*or*`exename.exe` *and on Linux or Mac or MSYS2:* `./exename` *)*
+
 
 ### 2) MABE Architecture and Configuration
 
@@ -259,31 +433,6 @@ org->dataMap.append("food_eaten", food_eaten_counter);
 Alternatively, you may want to save very specific data and lots of it, perhaps for visualizing state later. You can use `FileManager.writeToFile(filename, datastring)`
 The FileManager makes sure to blank the file at the start of MABE, and keep appending to that file every time you write to it.
 
-#### Running on the HPCC
-
-Before you can do anything on the HPCC, 2 of the biggest roadblocks will be simply compiling MABE. Toward that end, here's how on the HPCC:
-
-* you can ONLY do useful things on a dev node. Don't try to do anything on the initial gateway node, except ssh to a dev node. Typical workflow should look like: `ssh hpcc.msu.edu` then `ssh dev-intel18` or some other dev node. Gateway will list possible dev nodes for you when you first log on.
-* load the right git so you can clone the repo: `module load git`
-* load the right compilers and other tools once you have the repo: see the file `hpcc/loadmodules.sh` for which HPCC modules to load. You can run it by `source hpcc/loadmodules.sh`
-
-There is a lot to know to run things on the HPCC! The `mq` tool helps with this (in the `tools/` dir). `mq` manages job submission of replicates and condition combinations, as well as allowing you to make use of the DMTCP system for Distributed MultiThreaded CheckPointing, which allows us to run jobs that will:
-
-1) have high priority in the queue by claiming to run less than 4 hours
-2) save state at 3hr 55min runtime, and quit, then resubmit for another 4 hour window, repeating until done.
-
-The complexity of `mq` is in the condition, replication, and other settings configuration. This is done through a text file called `mq_conditions.txt`. A default template you should copy to your `work/` directory is in `tools/mq_conditions.txt`. At a high level, you can set the number of replicates to run (repeats of a stochastic observation), the MABE parameters you will be changing between conditions, and what values for those parameters you want to explore. To learn more about this, see the [MABE wiki entry](https://github.com/Hintzelab/MABE/wiki/MQ). In the future this template will be generated by the mq tool and will not exist as a separate file until generated on command.
-
-Once you have configured your experimental conditions in your `work/` copy of `mq_conditions.txt`, then you can run them using the `mq` tool. There are several ways to run your experiment. Note you should edit the HPCC parameters at the bottom of the file to suit your job specifications. These are the same parameters as for any HPCC job submission - see iCER wiki or ask their staff for more information.
-
-* `python ../tools/mq.py -h`: lists the help information, some of which are listed here
-* `python ../tools/mq.py -l`: run your full experiment on your local computer
-* `python ../tools/mq.py -n`: make the empty directories, and report would _would_ be run, but don't actually run.
-* `python ../tools/mq.py -t`: test run. Tries to force very few replicates and very small number of generations, but runs all conditions. Good for testing if all the right input and output files look and work okay.
-* `python ../tools/mq.py -d`: submit your full experiment to the HPCC, asking for the job run-time window you specified in `mq_conditions.txt` Must be running this command on the HPCC for it to work.
-* `python ../tools/mq.py -i`: run in indefinite mode (recommended). This mode runs your job in 4 hr chunks, saving progress at the end of each chunk. Terminates when your request number of generations is reached. The reason this is good is the HPCC queueuing system prioritizes jobs that run in 4 hours or less and lets those jobs run on a wider number of computers. Must be running this command on the HPCC for it to work.
-
-There are many HPCC-specific [job specifications](https://wiki.hpcc.msu.edu/display/ITH/List+of+Job+Specifications) and adjustments you may need to make (see the bottom of `mq_conditions.txt`), and the ICER's HPCC wiki and support open office hours are great ways to get help with this topic. See the HPCC's [Cluster Resources](https://wiki.hpcc.msu.edu/pages/viewpage.action?pageId=20120131) page to see what kinds of nodes are available. Intel18 has 20 cores (40 fake/hyperthreaded).
 
 ### 3.1 Animat Architecture (Motors2World)
 
