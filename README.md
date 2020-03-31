@@ -63,7 +63,7 @@ The Reimers Lab digital animat project is a digital study organism to investigat
     * We go over how MABE works, the different code sections, and how the animat code fits in.
 3) [**Animat Architecture**](#31-animat-architecture-motors2world)
     * We detail the various parts of the animat code itself, so you know roughly where things are to add or modify.
-4) [**c++17 and Beyond**](#4-c++17-and-beyond)
+4) [**c++17 and Beyond**](#4-c17-and-beyond)
     * We go over some of the newer c++ syntax used in the animat code, and point out the special libraries the animat code uses.
 5) [**Loading and Analysis**](#5-loading-and-analysis)
     * Shows basics of loading saved agents/populations and how to export behavior data and other data, then how to visualize the behavior.
