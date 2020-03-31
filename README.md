@@ -57,7 +57,7 @@ No, if you've already compiled MABE, you will still find it in your `work/` dire
 
 The Reimers Lab digital animat project is a digital study organism to investigate questions around neurodevelopment, lifetime learning, evolutionary genetics, and evolutionary pressures. The rest of this document describes how to get the code, build and run, and what the sections of code are that you may be interested to modify.
 
-1) **Software: Install, Build, and Run**
+1) [**Software: Install, Build, and Run**](#1-software-install-build-and-run)
     * We will get you up and running with the code base and comfortable compiling the code, with a separate guide for each OS.
 2) **MABE Architecture and Configuration**
     * We go over how MABE works, the different code sections, and how the animat code fits in.
