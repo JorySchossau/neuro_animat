@@ -59,13 +59,13 @@ The Reimers Lab digital animat project is a digital study organism to investigat
 
 1) [**Software: Install, Build, and Run**](#1-software-install-build-and-run)
     * We will get you up and running with the code base and comfortable compiling the code, with a separate guide for each OS.
-2) **MABE Architecture and Configuration**
+2) [**MABE Architecture and Configuration**](#2-mabe-architecture-and-configuration)
     * We go over how MABE works, the different code sections, and how the animat code fits in.
-3) **Animat Architecture**
+3) [**Animat Architecture**](#3-animat-architecture)
     * We detail the various parts of the animat code itself, so you know roughly where things are to add or modify.
-4) **c++17 and Beyond**
+4) [**c++17 and Beyond**](#4-c++17-and-beyond)
     * We go over some of the newer c++ syntax used in the animat code, and point out the special libraries the animat code uses.
-5) **Loading and Analysis**
+5) [**Loading and Analysis**](#5-loading-and-analysis)
     * Shows basics of loading saved agents/populations and how to export behavior data and other data, then how to visualize the behavior.
 
 ### 1) Software: Install, Build, and Run
