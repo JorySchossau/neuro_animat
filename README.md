@@ -549,7 +549,7 @@ To use this tool, copy or download the following files in that repository to you
 Then, use it like this:
 
 ```bash
-./vis --script=readcsv.gd --file=animat_data.csv
+./vis --2d --script=readcsv.gd --file=animat_data.csv
 ```
 
 * `animat_data.csv` is the resulting file from MABE when running Motors2World in Visualize mode. It has the positio/rotation of the agent and prey information from one lifetime of the first organism in the population.
